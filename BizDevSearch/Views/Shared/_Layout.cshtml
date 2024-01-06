@@ -1,49 +1,271 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - BizDevSearch</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/BizDevSearch.styles.css" asp-append-version="true" />
-</head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BizDevSearch</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+﻿﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<Exepense_Vendor_Management.Models.ApplicationUser> _usermanager
+@{
+    var user = await _usermanager.GetUserAsync(User);
+    var username = user.DisplayName.Split(" ").FirstOrDefault();
+    string displ = username.Substring(username.Length - 1);
+    if (displ.ToLower() != "s")
+    {
+        username = username + "'s";
+    }
+    else
+    {
+        username += "'";    
+    }
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - BizDevSearch - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+}
+<!DOCTYPE html>
+<html lang="zxx" class="js">
+
+<head>
+ <style>
+       
+ </style>
+    <base href="../">
+    <meta charset="utf-8">
+    <meta name="author" content="Softnio">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="A powerful and conceptual apps base dashboard template that especially build for developers and programmers.">
+    <!-- Fav Icon  -->
+    <link rel="shortcut icon" href="./images/favicon.png">
+    <!-- Page Title  -->
+    <title>RIZE MORTGAGE</title>
+
+
+    <!-- StyleSheets  -->
+    <link rel="stylesheet" href="~/Theme/assets/css/dashlite.css">
+    <link id="skin-default" rel="stylesheet" href="~/Theme/assets/css/theme.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+</head>
+
+<body class="nk-body npc-default has-apps-sidebar has-sidebar " style="background-color:#efe5e2 !important">
+    <div class="nk-app-root">
+       
+        <!-- main  -->
+        <div class="nk-main " style="background-color:white !important">
+            <!-- wrap  -->
+            <div class="nk-wrap ">
+                <!-- main header  -->
+                <div class="nk-header nk-header-fixed is-light" style="background-color:#ffede4 !important">
+                    <div class="container-fluid">
+                        <div class="nk-header-wrap">
+                            <div class="nk-menu-trigger d-xl-none ml-n1">
+                                <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
+                            </div>
+                            <div class="logo" style="padding:10Px">
+
+                                <img src="~/theme/images/rize.png" alt="Rize Stacked Logo" width="200">
+                            </div>
+
+                            <div class="nk-header-tools">
+                                <ul class="nk-quick-nav">
+                                    <li class="dropdown user-dropdown">
+                                        <a href="" class="dropdown-toggle mr-n1" data-toggle="dropdown">
+                                            <div class="user-toggle">
+                                                <div class="user-avatar" style="background-color: #F36C37;">
+                                                    <span>@(@user.DisplayName.Length > 0 ? User.Identity.Name[0].ToString().ToUpper() : "")</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
+                                            <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
+                                                <div class="user-card">
+                                                    <div class="user-avatar" style="background-color: #F36C37;">
+                                                        <span>@(@user.DisplayName.Length > 0 ? User.Identity.Name[0].ToString().ToUpper() : "")</span>
+
+                                                    </div>
+                                                    <div class="user-info">
+                                                        <span class="lead-text">@user.DisplayName</span>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="dropdown-inner">
+                                                <ul class="link-list">
+                                                    @*<li><a href="html/user-profile-regular.html"><em class="icon ni ni-user-alt"></em><span>View Profile</span></a></li>
+                                                    <li><a href="html/user-profile-setting.html"><em class="icon ni ni-setting-alt"></em><span>Account Setting</span></a></li>
+                                                    <li><a href="html/user-profile-activity.html"><em class="icon ni ni-activity-alt"></em><span>Login Activity</span></a></li>
+                                                    <li><a class="dark-switch" href="#"><em class="icon ni ni-moon"></em><span>Dark Mode</span></a></li>
+                                                    <li><a href=" ~ /Shared/ForgetPassword?id =@User.Id"><em class="icon ni ni-activity-alt"></em><span>Forgot Password</span></a></li>*@
+                                                </ul>
+                                            </div>
+                                            <div class="dropdown-inner">
+                                                <ul class="link-list">
+                                                    <li><a href="~/Accounts/Logout/"><em class="icon ni ni-signout"></em><span>Sign out</span></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- main header -->
+                <div class="nk-sidebar" data-content="sidebarMenu" style="background-color:#efe5e2 !important">
+                    <div class="nk-sidebar-inner" data-simplebar>
+                        <ul class="nk-menu nk-menu-md">
+                            <li class="nk-menu-heading">
+
+                            </li><!-- .nk-menu-heading -->
+                            @if (User.IsInRole("Super Admin"))
+                            {
+                                @* <li class="nk-menu-heading">
+                            <h6 class="overline-title text-primary-alt">Dashboards</h6>
+                            </li>
+                            <li class="nk-menu-item has-sub">
+                            <a href="#" class="nk-menu-link nk-menu-toggle">
+                            <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>
+                            <span class="nk-menu-text">Projects</span>
+                            </a>
+                            <ul class="nk-menu-sub">
+                            <li class="nk-menu-item">
+                            <a href="html/project-card.html" class="nk-menu-link"><span class="nk-menu-text">Project Cards</span></a>
+                            </li>
+                            <li class="nk-menu-item">
+                            <a href="html/project-list.html" class="nk-menu-link"><span class="nk-menu-text">Project List</span></a>
+                            </li>
+                            </ul><!-- .nk-menu-sub -->
+                            </li> *@
+
+                                <!-- .nk-menu-item -->
+                                <!-- .nk-menu-item -->
+
+
+                                <li class="nk-menu-heading">
+                                    <h6 class="overline-title text-primary-alt" style="color:#241c4f">All Pages</h6>
+                                </li>
+
+                                <!-- .nk-menu-heading -->
+                                <!-- .nk-menu-item -->
+
+
+
+
+
+                                <li class="nk-menu-item has-sub" >
+                                    <a href="#" class="nk-menu-link nk-menu-toggle">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb" ></em></span>
+                                        <span class="nk-menu-text">Vendor Management</span>
+                                    </a>
+                                    <ul class="nk-menu-sub">
+                                        <li class="nk-menu-item">
+                                            <a href="~/AllForms/VendorForm" class="nk-menu-link">
+                                                <span class="nk-menu-icon"><i class="bi bi-person-fill-add"></i></span>
+                                                <span class="nk-menu-text" >New Vendor Request Form</span>
+                                            </a>
+                                        </li>
+                                        <li class="nk-menu-item">
+                                            <a href="~/ActionCenter/AllVendorForms" class="nk-menu-link">
+                                                <span class="nk-menu-icon"><i class="bi bi-people-fill"></i></span>
+                                                <span class="nk-menu-text">All vendors </span>
+                                            </a>
+                                        </li>
+                                        
+                                    </ul><!-- .nk-menu-sub -->
+                                </li>
+
+
+
+
+
+
+
+
+
+                                <li class="nk-menu-item has-sub">
+                                    <a href="#" class="nk-menu-link nk-menu-toggle">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>
+                                        <span class="nk-menu-text">Tax Benefits Plan</span>
+                                    </a>
+                                    <ul class="nk-menu-sub">
+                                        <li class="nk-menu-item">
+                                            <a href="~/AllForms/ExpenseForm" class="nk-menu-link">
+                                                <span class="nk-menu-icon"><i class="bi bi-person-fill-add"></i></span>
+                                                <span class="nk-menu-text">Expense Form</span>
+                                            </a>
+                                        </li>
+                                        <li class="nk-menu-item">
+                                            <a href="~/ActionCenter/AllExpenseForms" class="nk-menu-link">
+                                                <span class="nk-menu-icon"><i class="bi bi-people-fill"></i></span>
+                                                <span class="nk-menu-text">@username History</span>
+                                            </a>
+                                        </li>
+                                        
+                                    </ul><!-- .nk-menu-sub -->
+                                </li>
+
+
+
+
+
+
+
+                                <li class="nk-menu-item has-sub">
+                                    <a href="#" class="nk-menu-link nk-menu-toggle">
+                                        <span class="nk-menu-icon"><em class="icon ni ni-tile-thumb"></em></span>
+                                        <span class="nk-menu-text">Branch Expense Management</span>
+                                    </a>
+                                    <ul class="nk-menu-sub">
+                                        <li class="nk-menu-item">
+                                            <a href="~/AllForms/CostExpenseForm" class="nk-menu-link">
+                                                <span class="nk-menu-icon"><i class="bi bi-person-fill-add"></i></span>
+                                                <span class="nk-menu-text">New Submission</span>
+                                            </a>
+                                        </li>
+                                        <li class="nk-menu-item">
+                                            <a href="~/ActionCenter/AllCostExpense" class="nk-menu-link">
+                                                <span class="nk-menu-icon"><i class="bi bi-people-fill"></i></span>
+                                                <span class="nk-menu-text">History</span>
+                                            </a>
+                                        </li>
+                                        
+                                    </ul><!-- .nk-menu-sub -->
+                                </li>
+
+                                <!-- .nk-menu-item -->
+
+@*
+                                <li class="nk-menu-item">
+                                    <a href="~/AllForms/submittedForm" class="nk-menu-link">
+                                        <span class="nk-menu-icon"><i class="bi bi-people-fill"></i></span>
+                                        <span class="nk-menu-text">All Submitted Forms</span>
+                                    </a>
+                                </li>*@
+                            }
+                            <li class="nk-menu-item">
+
+                            </li>
+                            <li class="nk-menu-item">
+
+                            </li>
+                            <li class="nk-menu-item">
+
+                            </li>
+
+
+
+
+
+                        </ul><!-- .nk-menu -->
+                    </div>
+                </div>
+                <div style="padding:10px;">
+                @RenderBody()
+                </div>
+                <!-- content -->
+            </div>
+            <!-- wrap  -->
         </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+        <!-- main  -->
+    </div>
+    <!-- app-root  -->
+    <!-- JavaScript -->
+
+   
+    <script src="~/theme/assets/js/bundle.js?ver=2.5.0"></script>
+    <script src="~/theme/assets/js/scripts.js"></script>
+
 </body>
+
 </html>
