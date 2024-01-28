@@ -1,5 +1,6 @@
 ﻿using Azure.Identity;
 using BizDevSearch.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Graph;
@@ -7,13 +8,14 @@ using System.Security.Claims;
 
 namespace BizDevSearch.Controllers
 {
-    public class AccountController : Controller
+    [AllowAnonymous]
+    public class AccountsController : Controller
     {
         private SignInManager<IdentityUser> signInManager;
         private UserManager<IdentityUser> UserManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration configuration;
-        public AccountController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> _roleManager, IConfiguration configuration)
+        public AccountsController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> _roleManager, IConfiguration configuration)
         {
 
             this.signInManager = signInManager;
