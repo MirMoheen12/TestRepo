@@ -1,0 +1,64 @@
+﻿@model LoginViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <link rel="stylesheet" href="~/theme/assets/css/index.css">
+    <title>RIZE MORTGAGE</title>
+    <link rel="icon" href="~/theme/images/favicon.png">
+    <style>
+       .bgimg {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            height: 100%;
+            width:100%;
+            z-index: -1;
+            /* You can adjust background properties such as size, position, and repeat here if needed */
+        }
+    </style>
+</head>
+<body>
+    <img class="bgimg" src="~/theme/assets/images/_bglogin.jpg" />
+  <div class="container">
+    <section>
+        <div class="form-box">
+            <div class="form-value">
+              
+                    <center><img src="~/theme/images/rizemortage.png" style="width:210px; height:auto; " /></center>
+                    </br>
+                    </br>
+                        @{
+                            if (Model.Externallogin.Count == 0)
+                            {
+                                <p>No External Login Provided</p>
+                            }
+                            else
+                            {
+                                <form method="post" asp-action="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl">
+
+                                    @foreach (var item in Model.Externallogin)
+                                    {
+                                    <button type="submit" name="provider" title="Login using your @item.Name account" value="@item.Name" class="btn " style="background-color:#020558;color:white;margin-top:10px;width:250PX ">
+                                            <p style="font-weight:bold;font-size:22px"> Continue to Login</p>
+                                        </button>
+                                    }
+                                </form>
+                            }
+                        }
+                   
+                   
+                 
+                 
+              
+            </div>
+        </div>
+    </section>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    </div>
+</body>
+</html>

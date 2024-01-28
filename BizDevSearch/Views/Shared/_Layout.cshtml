@@ -1,19 +1,5 @@
-﻿﻿@using Microsoft.AspNetCore.Identity
-@inject UserManager<Exepense_Vendor_Management.Models.ApplicationUser> _usermanager
-@{
-    var user = await _usermanager.GetUserAsync(User);
-    var username = user.DisplayName.Split(" ").FirstOrDefault();
-    string displ = username.Substring(username.Length - 1);
-    if (displ.ToLower() != "s")
-    {
-        username = username + "'s";
-    }
-    else
-    {
-        username += "'";    
-    }
+﻿@using Microsoft.AspNetCore.Identity
 
-}
 <!DOCTYPE html>
 <html lang="zxx" class="js">
 
@@ -63,20 +49,20 @@
                                         <a href="" class="dropdown-toggle mr-n1" data-toggle="dropdown">
                                             <div class="user-toggle">
                                                 <div class="user-avatar" style="background-color: #F36C37;">
-                                                    <span>@(@user.DisplayName.Length > 0 ? User.Identity.Name[0].ToString().ToUpper() : "")</span>
-                                                </div>
+@*                                                     <span>@(@user.DisplayName.Length > 0 ? User.Identity.Name[0].ToString().ToUpper() : "")</span>
+ *@                                                </div>
                                             </div>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
                                             <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
                                                 <div class="user-card">
                                                     <div class="user-avatar" style="background-color: #F36C37;">
-                                                        <span>@(@user.DisplayName.Length > 0 ? User.Identity.Name[0].ToString().ToUpper() : "")</span>
-
+@*                                                         <span>@(@user.DisplayName.Length > 0 ? User.Identity.Name[0].ToString().ToUpper() : "")</span>
+ *@
                                                     </div>
                                                     <div class="user-info">
-                                                        <span class="lead-text">@user.DisplayName</span>
-
+@*                                                         <span class="lead-text">@user.DisplayName</span>
+ *@
                                                     </div>
                                                 </div>
                                             </div>
@@ -188,8 +174,8 @@
                                         <li class="nk-menu-item">
                                             <a href="~/ActionCenter/AllExpenseForms" class="nk-menu-link">
                                                 <span class="nk-menu-icon"><i class="bi bi-people-fill"></i></span>
-                                                <span class="nk-menu-text">@username History</span>
-                                            </a>
+@*                                                 <span class="nk-menu-text">@username History</span>
+ *@                                            </a>
                                         </li>
                                         
                                     </ul><!-- .nk-menu-sub -->
